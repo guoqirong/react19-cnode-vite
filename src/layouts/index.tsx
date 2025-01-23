@@ -4,7 +4,7 @@ import { CaretUpOutlined } from '@ant-design/icons';
 import { Content } from 'antd/lib/layout/layout';
 import FooterComp from './components/footer';
 import HeaderComp from './components/header';
-import AppRouter from './components/appRouter';
+import AppRouter from './components/app-router';
 import { selectGlobal, updateLoading, updateUserData } from '@/store/global';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import httpRequest, { adornUrl } from '@/utils/request';
@@ -46,7 +46,7 @@ const Layouts: FunctionComponent = () => {
     } else {
       dispatch(updateUserData({}));
     }
-  }, [simpleUserData]);
+  }, [simpleUserData, token]);
 
   return (
     <Layout className='components-layout-index'>

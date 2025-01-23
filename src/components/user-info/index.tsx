@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Avatar, Card, Empty, List } from 'antd';
 import { selectGlobal, userDataType } from '@/store/global';
@@ -10,14 +10,18 @@ interface UserInfoProps {
   isTopicsRepliesList?: boolean;
 }
 
-const UserInfo: FunctionComponent<UserInfoProps> = ({ userInfo, isTopicsRepliesList }) => {
+const UserInfo: FunctionComponent<UserInfoProps> = ({ userInfo, isTopicsRepliesList = true }) => {
   const { token, userData, isLoading } = useAppSelector(selectGlobal);
   const history = useNavigate();
-  const user = userInfo ?? userData;
+  const [user, setUser] = useState<userDataType>();
+
+  useEffect(() => {
+    setUser(userInfo ?? userData);
+  }, [userData, userInfo]);
 
   // 前往用户详情页
   const gotoUserDetail = () => {
-    history(`/user/${user?.loginName}`);
+    history(`/user/${user?.loginName ?? user?.loginname}`);
   };
 
   return (
@@ -26,9 +30,9 @@ const UserInfo: FunctionComponent<UserInfoProps> = ({ userInfo, isTopicsRepliesL
         <Card title='' className='user-info-card is-Can-Click' loading={isLoading} onClick={gotoUserDetail}>
           <div>
             <Avatar shape='square' size='large' src={user?.avatar_url}>
-              {user?.loginName}
+              {user?.loginName ?? user?.loginname}
             </Avatar>
-            <span className='user-name'>{user?.loginName}</span>
+            <span className='user-name'>{user?.loginName ?? user?.loginname}</span>
           </div>
           {user?.score && <div className='user-score'>积分：{user?.score || ''}</div>}
         </Card>

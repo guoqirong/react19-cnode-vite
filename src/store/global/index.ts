@@ -28,6 +28,7 @@ export interface userDataType {
   create_at?: string;
   githubUsername?: string;
   loginName?: string;
+  loginname?: string;
   recent_replies?: recentDataItemType[];
   recent_topics?: recentDataItemType[];
   score?: number;

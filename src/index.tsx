@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
+import '@ant-design/v5-patch-for-react-19';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import App from './layouts';

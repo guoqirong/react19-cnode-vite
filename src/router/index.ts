@@ -5,14 +5,14 @@ export const routes = [
     path: '/',
     component: lazy(() => import('@/views/list')),
   },
-  // {
-  //   path: '/login',
-  //   // component: () => import('@/views/login/index.vue')
-  // },
-  // {
-  //   path: '/detail',
-  //   // component: () => import('@/views/detail/index.vue')
-  // },
+  {
+    path: '/login',
+    component: lazy(() => import('@/views/login')),
+  },
+  {
+    path: '/detail',
+    component: lazy(() => import('@/views/detail')),
+  },
   // {
   //   path: '/add-topic',
   //   meta: { requiredLogin: true },
