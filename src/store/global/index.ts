@@ -15,6 +15,7 @@ export interface IGlobalState {
   userData: userDataType;
   isLoading: boolean;
   listParm: string;
+  upMassageCount: number;
 }
 
 interface simpleUserDataType {
@@ -52,6 +53,7 @@ const initialState: IGlobalState = {
   userData: {},
   isLoading: false,
   listParm: '',
+  upMassageCount: 1,
 };
 
 // 创建带有命名空间的reducer
@@ -89,12 +91,25 @@ const globalSlice = createSlice({
         listParm: payload,
       };
     },
+    updateUpMassageCount(state, { payload }: { payload: number }) {
+      return {
+        ...state,
+        upMassageCount: payload,
+      };
+    },
   },
   extraReducers: () => {},
 });
 
 export const selectGlobal = (state: RootState) => state.global;
 
-export const { updateToken, updateSimpleUserData, updateUserData, updateLoading, updateListParm } = globalSlice.actions;
+export const {
+  updateToken,
+  updateSimpleUserData,
+  updateUserData,
+  updateLoading,
+  updateListParm,
+  updateUpMassageCount,
+} = globalSlice.actions;
 
 export default globalSlice.reducer;

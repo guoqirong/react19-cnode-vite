@@ -1,15 +1,15 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Badge } from 'antd';
 import { Header } from 'antd/es/layout/layout';
 import { useAppDispatch, useAppSelector } from '@/store/store';
-import { selectGlobal } from '@/store/global';
+import { selectGlobal, updateSimpleUserData, updateToken } from '@/store/global';
 import httpRequest, { adornUrl } from '@/utils/request';
 import logoIcon from '@/assets/svg/logo.svg';
 import './index.scss';
 
 const HeaderComp: FunctionComponent = () => {
-  const { token } = useAppSelector(selectGlobal);
+  const { token, upMassageCount } = useAppSelector(selectGlobal);
   const dispatch = useAppDispatch();
   const history = useNavigate();
 
@@ -36,28 +36,17 @@ const HeaderComp: FunctionComponent = () => {
       });
   };
 
-  // const [event] = useEventBus();
-  // useEffect(() => {
-  //   if (token) {
-  //     getMassageCount();
-  //     event.on('read-msg', getMassageCount);
-  //   }
-  //   return () => {
-  //     event.off('read-msg', getMassageCount);
-  //   };
-  // }, [token]);
+  useEffect(() => {
+    if (token) {
+      getMassageCount();
+    }
+  }, [token, upMassageCount]);
 
   // 退出登录
   const goLoginOut = () => {
     localStorage.clear();
-    dispatch({
-      type: 'global/updateToken',
-      payload: '',
-    });
-    dispatch({
-      type: 'global/updateSimpleUserData',
-      payload: {},
-    });
+    dispatch(updateToken(''));
+    dispatch(updateSimpleUserData({}));
     history('/');
   };
 
