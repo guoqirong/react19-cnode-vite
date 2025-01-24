@@ -8,12 +8,10 @@ import { topicListItemType } from '@/components/list-item';
 import PageWrapper from '@/components/page-wrapper';
 import UserInfo from '@/components/user-info';
 import { topicTypeList } from '@/constant';
+import { useAppSelector } from '@/store/store';
+import { selectGlobal } from '@/store/global';
 import httpRequest, { adornUrl, resDataType } from '@/utils/request';
 import './index.scss';
-
-interface IndexPageProps {
-  listParm: string;
-}
 
 interface getTopicListType {
   page?: number;
@@ -22,7 +20,8 @@ interface getTopicListType {
   mdrender?: boolean;
 }
 
-const IndexPage: FunctionComponent<IndexPageProps> = ({ listParm }) => {
+const IndexPage: FunctionComponent = () => {
+  const { listParm } = useAppSelector(selectGlobal);
   const history = useNavigate();
   // 类别
   const [activeTypeName, setActiveTypeName] = useState<string>('all');

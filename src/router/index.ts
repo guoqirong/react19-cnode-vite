@@ -13,16 +13,16 @@ export const routes = [
     path: '/detail',
     component: lazy(() => import('@/views/detail')),
   },
-  // {
-  //   path: '/add-topic',
-  //   meta: { requiredLogin: true },
-  //   // component: () => import('@/views/edit-topic/index.vue')
-  // },
-  // {
-  //   path: '/edit-topic/:id',
-  //   meta: { requiredLogin: true },
-  //   // component: () => import('@/views/edit-topic/index.vue')
-  // },
+  {
+    path: '/add-topic',
+    meta: { requiredLogin: true },
+    component: lazy(() => import('@/views/edit-topic')),
+  },
+  {
+    path: '/edit-topic/:id',
+    meta: { requiredLogin: true },
+    component: lazy(() => import('@/views/edit-topic')),
+  },
   // {
   //   path: '/message',
   //   meta: { requiredLogin: true },
