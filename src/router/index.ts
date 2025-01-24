@@ -23,19 +23,18 @@ export const routes = [
     meta: { requiredLogin: true },
     component: lazy(() => import('@/views/edit-topic')),
   },
-  // {
-  //   path: '/message',
-  //   meta: { requiredLogin: true },
-  //   // component: () => import('@/views/message/index.vue')
-  // },
-  // {
-  //   path: '/collect',
-  //   meta: { requiredLogin: true },
-  //   // component: () => import('@/views/collect/index.vue')
-  // },
-  // {
-  //   path: '/user/:userName',
-  //   meta: { requiredLogin: true },
-  //   // component: () => import('@/views/user-detail/index.vue')
-  // }
+  {
+    path: '/message',
+    meta: { requiredLogin: true },
+    component: lazy(() => import('@/views/message')),
+  },
+  {
+    path: '/collect',
+    meta: { requiredLogin: true },
+    component: lazy(() => import('@/views/collect')),
+  },
+  {
+    path: '/user/:userName',
+    component: lazy(() => import('@/views/user-detail')),
+  },
 ];
